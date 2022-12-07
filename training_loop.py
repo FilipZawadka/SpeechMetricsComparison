@@ -20,7 +20,7 @@ torch.use_deterministic_algorithms(True)
 
 def training_loop():
 
-    target_directory = '/home/filip/speech_metrics_eval/training_checkpoints/multihead_wav2vec_13'
+    target_directory = '/work/checkpoints/speech_evaluation_metrics/training_checkpoints/multihead_wav2vec_14'
     os.makedirs(target_directory)
 
     model = Multihead_Wav2vec()
