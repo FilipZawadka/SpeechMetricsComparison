@@ -46,7 +46,7 @@ class NISQA_Corpus_Dataset(Dataset):
     def clip_2_audios(self,audio_1,audio_2,clip_sec=3,sampling_rate=16000):
         window_size = clip_sec*sampling_rate
         if len(audio_1) < window_size:
-            return np.concatenate(audio_1, np.zeros(window_size - len(audio_1))), np.concatenate(audio_2, np.zeros(window_size - len(audio_2)))
+            return np.concatenate([audio_1, np.zeros(window_size - len(audio_1))]), np.concatenate([audio_2, np.zeros(window_size - len(audio_2))])
         else:
             start = random.randrange(0, len(audio_1)-window_size)
             return audio_1[start:start+window_size],audio_2[start:start+window_size]
