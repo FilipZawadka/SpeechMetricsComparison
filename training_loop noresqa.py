@@ -33,7 +33,7 @@ def training_loop():
     mse = torch.nn.MSELoss()
 
     train_dataset = NISQA_Corpus_Dataset(clip_sec=5)
-    train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=True, sampler=None,
+    train_dataloader = DataLoader(train_dataset, batch_size=8, shuffle=False, sampler=None,
            batch_sampler=None, num_workers=4, collate_fn=None)
 
     val_dataset = NISQA_Corpus_Dataset(csv_path="/work/data/speech_metrics_eval/NISQA_Corpus/NISQA_VAL_SIM/NISQA_VAL_SIM_file_pesq_si_sdr.csv",
@@ -69,9 +69,9 @@ def training_loop():
                 optimizer.step()
                 writer.add_scalar('loss', loss, glob_step)
 
-                writer.add_scalar('mos_loss', mos_loss/mos_loss_weight, glob_step)
-                writer.add_scalar('pesq_loss', pesq_loss/pesq_loss_weight, glob_step)
-                writer.add_scalar('sdr_loss', sdr_loss/sdr_loss_weight, glob_step)
+                writer.add_scalar('mos_loss', mos_loss, glob_step)
+                writer.add_scalar('pesq_loss', pesq_loss, glob_step)
+                writer.add_scalar('sdr_loss', sdr_loss, glob_step)
 
                 if step % 100 == 0:
                     print(glob_step,"\n")

@@ -9,6 +9,7 @@ class Multihead_Wav2vec(nn.Module):
     rnn_layers=2,
     rnn_hidden=256,
     rnn_bidirectional=True,
+    linear_size = 149
 
      ):    
         super().__init__()
@@ -27,9 +28,9 @@ class Multihead_Wav2vec(nn.Module):
         self.att_SDR = nn.MultiheadAttention(self.embed_dim, num_heads = 1)
 
         # Output Layer Non-intrusive Metric
-        self.dense_MOS_1   = nn.Linear(249 * self.embed_dim, 100)
-        self.dense_PESQ_1  = nn.Linear(249 * self.embed_dim, 100)
-        self.dense_SDR_1   = nn.Linear(249 * self.embed_dim, 100)
+        self.dense_MOS_1   = nn.Linear(linear_size * self.embed_dim, 100)
+        self.dense_PESQ_1  = nn.Linear(linear_size * self.embed_dim, 100)
+        self.dense_SDR_1   = nn.Linear(linear_size * self.embed_dim, 100)
 
         self.dense_MOS_2   = nn.Linear(100, 1) # MOS score
         self.dense_PESQ_2  = nn.Linear(100, 1) # PESQ score
